@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="../index.js"></script>
+
+    <title>Real or Fraudulent Job Classifier</title>
+</head>
+
+<body class="container flex space-evenly bg-lightBlue mx-auto">
+    <!-- Menu -->
+    <div id="menu" class="container mx-auto my-20 w-1/5 bg-white content-center rounded-xl px-8 py-8 h-min shadow-lg">
+        <ul class="flex-col">
+            <li class="flex-1 mr-2">
+              <a id="info-menu" class="text-center block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white" href="#" onclick="showInfo()">Introduction & Information</a>
+            </li>
+            <li class="flex-1 mr-2">
+              <a id="model-menu" class="text-center block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4" href="#" onclick="showModel()">Model</a>
+            </li>
+          </ul>
+    </div>
+    <div id="info" class="container mx-auto my-20 w-3/4 bg-white content-center rounded-xl px-8 py-8 shadow-lg">
+        <!-- Title -->
+        <div class="container mx-auto px-6 py-6">
+            <h1 class="text-3xl text-center font-bold">Real or Fake Job?</h1>
+        </div>
+        <!-- Information for User -->
+        <div class="container mx-auto px-6 py-6 space-y-8">
+            <div>
+                <h3 class="text-xl py-3 font-semibold">What is this app for?</h3>
+                <p>This app helps people identify whether a job is a real job posting or a fraudulent one. With more people searching for jobs virtually, there are also more cyber criminals using fraudulent job postings to steal money and personal information from people. Being able to detect a false job posting could help prevent people from giving out information to false job postings.</p>
+            </div>
+            <div>
+                <h3 class="text-xl py-3 font-semibold">How does this app work?</h3>
+                <ol class="list-decimal list-inside space-y-1">
+                    <li>Click on the "Model" tab</li>
+                    <li>Input information about the job posting</li>
+                    <li>Click on the "Predict" button and await results!</li>
+                </ol>
+            </div>
+
+            <div>
+                <h3 class="text-xl py-3 font-semibold">Privacy and Data Usage</h3>
+                <div class="space-y-3">
+                    <p>This app does not collect, store, or share any personal information or data from its users. The app is designed to operate solely on the device it is installed on, and all data used by the app is processed on the device itself.</p>
+                    <p>The app does not collect or store any information that can be used to identify its users, such as users' names, email addresses, or IP addresses. No information about users' devices, such as its hardware or software specifications, are stored either.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="model" class="container mx-auto my-20 w-3/4 bg-white content-center rounded-xl px-8 py-8 hidden shadow-lg">
+        <!-- Title -->
+        <div class="container mx-auto px-6 py-6">
+            <h1 class="text-3xl text-center font-bold">Real or Fake Job?</h1>
+        </div>
+        <!-- Form -->
+        <div class="container mx-auto px-6 py-6">
+            <form action="{{ url_for('predict')}}" method="post">
+                <div class="mb-6">
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Title</label>
+                    <input type="text" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. Marketing Manager">
+                </div>
+                <div class="mb-6">
+                    <label for="company_profile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company Profile</label>
+                    <textarea id="company_profile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. Company ABC is..."></textarea>
+                </div>
+                <div class="mb-6">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Description</label>
+                    <textarea type="text" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. This job is for those who..."></textarea>
+                </div>
+                <div class="mb-6">
+                    <label for="requirements" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Requirements</label>
+                    <textarea type="text" id="requirements" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. BS Degree, 2+ years experience"></textarea>
+                </div>
+                <div class="mb-6">
+                    <label for="benefits" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Benefits</label>
+                    <textarea type="text" id="benefits" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. Healthcare, PTO"></textarea>
+                </div>
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+    
+
+            <h4> {{ prediction_text }} </h4>
+        </div>
+    </div>
+
+
+</body>
+</html>
