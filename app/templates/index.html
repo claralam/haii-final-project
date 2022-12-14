@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href= "{{url_for('static',filename='css/styles.css') }}">
 
     <!-- JavaScript -->
-    <script type="text/javascript" src="../index.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='index.js') }}"></script>
 
     <title>Real or Fraudulent Job Classifier</title>
 </head>
@@ -87,9 +87,11 @@
                 </div>
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
-    
+        </div>
 
-            <h4> {{ prediction_text }} </h4>
+        <div>
+            <p> {{ prediction_text }} </p>
+            <p> </p>
         </div>
     </div>
 

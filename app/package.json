@@ -5,8 +5,8 @@
   "main": "app.py",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwindcss -i ./css/input.css -o ./css/styles.css",
-    "watch": "tailwindcss -i ./css/input.css -o ./css/styles.css --watch",
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/styles.css",
+    "watch": "tailwindcss -i ./static/css/input.css -o ./static/css/styles.css --watch",
     "start": "npm run build && python app.py"
   },
   "author": "",

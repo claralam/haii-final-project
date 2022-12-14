@@ -26,9 +26,16 @@ def configure_routes(app):
 
         features = [x for x in request.form.values()]
         text = processText(features)
-        print(text)
         prediction = model.predict(text)
         prediction_prob = model.predict_proba(text)
 
+        return_text = ''
+        if prediction[0] == 0:
+            return_text = f'This job posting is predicted to be real. The predicted probabilities are {prediction_prob}, where the first number is the likelihood of the job posting to be real and the second is the likelihood of the job posting to be fraudulent.'
+        else:
+            return_text = f'This job posting is predicted to be fraudulent. The predicted probabilities are {prediction_prob}, where the first number is the likelihood of the job posting to be real and the second is the likelihood of the job posting to be fraudulent.'
+
+
+
         print(prediction)
-        return render_template('index.html', prediction_text=f'{prediction} and {prediction_prob}')
+        return render_template('index.html', prediction_text=return_text)
